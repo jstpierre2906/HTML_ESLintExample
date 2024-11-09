@@ -5,11 +5,10 @@
   "main": "index.js",
   "scripts": {
     "eslint": "eslint",
-    "eslint.fix": "eslint --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "eslint.fix": "eslint --fix"
   },
   "keywords": [],
-  "author": "",
+  "author": "jstpierre2906",
   "license": "ISC",
   "devDependencies": {
     "@html-eslint/eslint-plugin": "^0.27.0",
