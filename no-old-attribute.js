@@ -1,13 +1,6 @@
-const setMeta = () => ({
-  type: "problem",
-  docs: {
-    description: "disallow old HTML attributes and replace bgcolor",
-    category: "Best Practices",
-    recommended: false,
-  },
-  fixable: "code",
-  schema: [], // no options
-});
+const setMeta = require("./utils/meta.util.js");
+const setReport = require("./utils/report.util.js");
+
 const fromPredicate = (attr) => {
   return (
     attr.key.type === "AttributeKey" &&
@@ -16,18 +9,13 @@ const fromPredicate = (attr) => {
     attr.value.value === "turquoise"
   );
 };
-const callFixerFunc = (fixer, attr) => {
+const fixerFunc = (fixer, attr) => {
   const start = attr.range[0];
   const end = attr.range[1];
   return fixer.replaceTextRange([start, end], 'class="turquoise"');
 };
-const setReport = (attr) => ({
-  node: attr,
-  message: "Old HTML attribute 'bgcolor' is not allowed. Use 'class' instead.",
-  fix: (fixer) => callFixerFunc(fixer, attr),
-});
 module.exports = {
-  meta: setMeta(),
+  meta: setMeta("disallow old HTML attributes and replace bgcolor"),
   create: (context) => ({
     Tag(node) {
       if (!node?.attributes.length) {
@@ -35,7 +23,7 @@ module.exports = {
       }
       node.attributes
         .filter((attr) => fromPredicate(attr))
-        .forEach((attr) => context.report(setReport(attr)));
+        .forEach((attr) => context.report(setReport(attr, fixerFunc)));
     },
   }),
 };
