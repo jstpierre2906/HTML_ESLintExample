@@ -1,4 +1,4 @@
-const setMeta = require("./utils/meta.util.js");
+const setMeta = require("../utils/meta.util.js");
 
 const fromPredicate = (attr) => {
   return (

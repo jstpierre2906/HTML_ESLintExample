@@ -1,7 +1,8 @@
-const html = require("@html-eslint/eslint-plugin");
+// Used for vanilla linter
+// const html = require("@html-eslint/eslint-plugin");
 const htmlParser = require("@html-eslint/parser");
 
-const noBgcolorTurquoisePlugin = require("./src/no-bgcolor-turquoise.plugin.js");
+const noBgcolorTurquoisePlugin = require("./src/no-bgcolor-turquoise/no-bgcolor-turquoise.plugin.js");
 
 module.exports = [
   {
