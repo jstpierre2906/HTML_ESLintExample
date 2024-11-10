@@ -1,0 +1,4 @@
+<dsd-accordion>
+  <h4 slot="title">Titre de l'accordéon</h4>
+  Contenu du tiroir
+</<dsd-accordion>

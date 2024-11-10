@@ -3,6 +3,7 @@
 const htmlParser = require("@html-eslint/parser");
 
 const noBgcolorTurquoisePlugin = require("./src/no-bgcolor-turquoise/no-bgcolor-turquoise.plugin.js");
+const dsdSubtitlePlugin = require("./src/dsd-subtitle/dsd-subtitle.plugin.js");
 
 module.exports = [
   {
@@ -17,7 +18,8 @@ module.exports = [
       // "@html-eslint": html,
 
       // A custom rule must be wrapped inside a custom plugin
-      local: noBgcolorTurquoisePlugin,
+      noBgcolorTurquoise: noBgcolorTurquoisePlugin,
+      dsdSubtitle: dsdSubtitlePlugin,
     },
     rules: {
       // Doesn't seem to change anything
@@ -26,7 +28,8 @@ module.exports = [
       // "@html-eslint/no-inline-styles": "warn",
 
       // <plugins-key>/<rules.key>: <notice-type>
-      "local/enforce-no-bgcolor-turquoise": "error",
+      "noBgcolorTurquoise/enforce-no-bgcolor-turquoise": "error",
+      "dsdSubtitle/enforce-dsd-subtitle": "error",
     },
   },
 ];

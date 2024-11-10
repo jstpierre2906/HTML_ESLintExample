@@ -1,13 +1,6 @@
 const setMeta = require("../utils/meta.util.js");
 
-const fromPredicate = (attr) => {
-  return (
-    attr.key.type === "AttributeKey" &&
-    attr.key.value === "bgcolor" &&
-    attr.value.type === "AttributeValue" &&
-    attr.value.value === "turquoise"
-  );
-};
+const fromPredicate = (attr) => attr.key.value === "bgcolor" && attr.value.value === "turquoise";
 
 const fixerFunc = (fixer, attr) => {
   const start = attr.range[0];
