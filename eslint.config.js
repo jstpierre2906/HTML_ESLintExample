@@ -3,7 +3,7 @@
 const htmlParser = require("@html-eslint/parser");
 
 const noBgcolorTurquoisePlugin = require("./src/no-bgcolor-turquoise/no-bgcolor-turquoise.plugin.js");
-const dsdSubtitlePlugin = require("./src/dsd-accordion-title-level/dsd-accordion-title-level.plugin.js");
+const dsdAccordionTitleLevelPlugin = require("./src/dsd-accordion-title-level/dsd-accordion-title-level.plugin.js");
 
 module.exports = [
   {
@@ -19,7 +19,7 @@ module.exports = [
 
       // A custom rule must be wrapped inside a custom plugin
       noBgcolorTurquoise: noBgcolorTurquoisePlugin,
-      dsdSubtitle: dsdSubtitlePlugin,
+      dsdSubtitle: dsdAccordionTitleLevelPlugin,
     },
     rules: {
       // Doesn't seem to change anything
