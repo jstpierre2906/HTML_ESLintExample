@@ -1,7 +1,7 @@
 {
   "name": "html-eslint-example",
   "version": "1.0.0",
-  "description": "Proof of concept: Modifying HTML with ESLint using @html-eslint. Example: npm run eslint.fix to modify HTML files having a fixer method specified.",
+  "description": "Proof of concept: Modifying HTML with ESLint using @html-eslint. Example: npm run eslint.fix to modify HTML files having a fixer method specified. Inspiration: https://github.com/yeonjuan/html-eslint/tree/main/packages/eslint-plugin/lib/rules",
   "main": "index.js",
   "scripts": {
     "eslint": "eslint",
