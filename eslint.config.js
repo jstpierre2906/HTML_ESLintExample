@@ -3,7 +3,7 @@
 const htmlParser = require("@html-eslint/parser");
 
 const noBgcolorTurquoisePlugin = require("./src/no-bgcolor-turquoise/no-bgcolor-turquoise.plugin.js");
-const dsdSubtitlePlugin = require("./src/dsd-subtitle/dsd-subtitle.plugin.js");
+const dsdSubtitlePlugin = require("./src/dsd-accordion-title-level/dsd-accordion-title-level.plugin.js");
 
 module.exports = [
   {
@@ -29,7 +29,7 @@ module.exports = [
 
       // <plugins-key>/<rules.key>: <notice-type>
       "noBgcolorTurquoise/enforce-no-bgcolor-turquoise": "error",
-      "dsdSubtitle/enforce-dsd-subtitle": "error",
+      "dsdSubtitle/enforce-dsd-accordion-h4-slot-title": "error",
     },
   },
 ];
