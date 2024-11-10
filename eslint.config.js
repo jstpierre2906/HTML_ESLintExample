@@ -1,7 +1,7 @@
 const html = require("@html-eslint/eslint-plugin");
 const htmlParser = require("@html-eslint/parser");
 
-const noBgcolorTurquoisePlugin = require("./no-bgcolor-turquoise.plugin.js");
+const noBgcolorTurquoisePlugin = require("./src/no-bgcolor-turquoise.plugin.js");
 
 module.exports = [
   {
