@@ -6,8 +6,8 @@ const dsdAccordionTitleLevelAttrPredicate = (a) =>
 
 const fromPredicate = (attr) => {
   return (
-    attr.parent.parent.name === "dsd-accordion" &&
-    attr.parent.parent.attributes.find((a) => dsdAccordionTitleLevelAttrPredicate(a)) &&
+    attr.parent?.parent.name === "dsd-accordion" &&
+    attr.parent?.parent?.attributes?.find((a) => dsdAccordionTitleLevelAttrPredicate(a)) &&
     attr.parent.name === "span" &&
     attr.key.value === "slot" &&
     attr.value.value === "title"
