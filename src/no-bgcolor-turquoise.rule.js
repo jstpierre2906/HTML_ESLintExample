@@ -1,5 +1,4 @@
 const setMeta = require("./utils/meta.util.js");
-const setReport = require("./utils/report.util.js");
 
 const fromPredicate = (attr) => {
   return (
@@ -25,7 +24,13 @@ module.exports = {
       }
       node.attributes
         .filter((attr) => fromPredicate(attr))
-        .forEach((attr) => context.report(setReport(attr, fixerFunc)));
+        .forEach((attr) =>
+          context.report({
+            node: attr,
+            message: "Old HTML attribute 'bgcolor' is not allowed. Use 'class' instead.",
+            fix: (fixer) => fixerFunc(fixer, attr),
+          })
+        );
     },
   }),
 };
