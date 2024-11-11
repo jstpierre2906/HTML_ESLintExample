@@ -5,6 +5,7 @@ const dsdAccordionTitleLevelAttrPredicate = (a) =>
   a.key.value === "title-level" && a.value.value === "4";
 
 const fromPredicate = (attr) => {
+  // Needs to be refactored in case dsd-accordion textContent is placed before span slot=title
   return (
     attr.parent?.parent.name === "dsd-accordion" &&
     attr.parent?.parent?.attributes?.find((a) => dsdAccordionTitleLevelAttrPredicate(a)) &&
@@ -15,6 +16,7 @@ const fromPredicate = (attr) => {
 };
 
 const fixerFunc = (fixer, attr) => {
+  // Needs to be refactored in case dsd-accordion textContent is placed before span slot=title
   const dsdAccordionTitleLevelAttr = attr.parent.parent.attributes.find((a) =>
     dsdAccordionTitleLevelAttrPredicate(a)
   );
@@ -33,7 +35,7 @@ module.exports = {
   meta: setMeta(message),
   create: (context) => ({
     Tag(node) {
-      if (!node?.attributes.length) {
+      if (!node.attributes?.length) {
         return;
       }
       node.attributes
