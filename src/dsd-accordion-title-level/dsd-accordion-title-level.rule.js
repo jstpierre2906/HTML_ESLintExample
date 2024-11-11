@@ -29,6 +29,7 @@ const fixerFunc = (fixer) => {
 module.exports = {
   meta: setMeta(message),
   create: (context) => ({
+    // https://github.com/yeonjuan/es-html-parser?tab=readme-ov-file#ast-format
     Tag(node) {
       if (!node.attributes?.length) {
         return;
