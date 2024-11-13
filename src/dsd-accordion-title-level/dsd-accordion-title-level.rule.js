@@ -10,7 +10,6 @@ const dsdAccordionTitleLevelAttrPredicate = (a) => {
 let fixerContext = {};
 
 const fromPredicate = (attr) => {
-  // Needs to be refactored in case dsd-accordion textContent is placed before span slot=title
   return (
     attr.parent?.parent.name === "dsd-accordion" &&
     attr.parent?.parent?.attributes?.find((a) => dsdAccordionTitleLevelAttrPredicate(a)) &&
@@ -40,7 +39,6 @@ module.exports = {
       node.attributes
         .filter((attr) => fromPredicate(attr))
         .map((attr) => {
-          // Needs to be refactored in case dsd-accordion textContent is placed before span slot=title
           fixerContext = {
             span: attr.parent,
             dsdAccordionTitleLevelAttr: attr.parent.parent.attributes.find((a) =>
