@@ -2,7 +2,10 @@ const setMeta = require("../utils/meta.util.js");
 
 const message = "Replacing dsd-accordion title-level";
 const dsdAccordionTitleLevelAttrPredicate = (a) => {
-  return a.key.value === "title-level" && a.value.value === "4";
+  return (
+    ["title-level", "[title-level]"].includes(a.key.value) &&
+    ["2", "3", "4", "5", "6"].includes(a.value.value)
+  );
 };
 let fixerContext = {};
 
@@ -12,8 +15,8 @@ const fromPredicate = (attr) => {
     attr.parent?.parent.name === "dsd-accordion" &&
     attr.parent?.parent?.attributes?.find((a) => dsdAccordionTitleLevelAttrPredicate(a)) &&
     attr.parent.name === "span" &&
-    attr.key.value === "slot" &&
-    attr.value.value === "title"
+    ["slot", "[slot]"].includes(attr.key.value) &&
+    ["title", "'title'"].includes(attr.value.value)
   );
 };
 
