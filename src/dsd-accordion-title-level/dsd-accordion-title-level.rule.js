@@ -3,23 +3,23 @@ const setMeta = require("../utils/meta.util.js");
 
 const message = "Replacing dsd-accordion title-level";
 const dsdAccordionTitleLevelAttrPredicate = (a) => {
-  attributeAdapter.init("title-level");
-  const titleLevelAttrArray = attributeAdapter.toArray();
-  return (
-    titleLevelAttrArray.includes(a.key.value) && ["2", "3", "4", "5", "6"].includes(a.value.value)
-  );
+  attributeAdapter.init({ attribute: "title-level", values: ["2", "3", "4", "5", "6"] });
+  const titleLevelAttrArray = attributeAdapter.toAttrArray();
+  const titleLevelValuesArray = attributeAdapter.toValuesArray();
+  return titleLevelAttrArray.includes(a.key.value) && titleLevelValuesArray.includes(a.value.value);
 };
 let fixerContext = {};
 
 const fromPredicate = (attr) => {
-  attributeAdapter.init("slot");
-  const slotAttrArray = attributeAdapter.toArray();
+  attributeAdapter.init({ attribute: "slot", values: ["title"] });
+  const slotAttrArray = attributeAdapter.toAttrArray();
+  const slotValuesArray = attributeAdapter.toValuesArray();
   return (
     attr.parent?.parent.name === "dsd-accordion" &&
     attr.parent?.parent?.attributes?.find((a) => dsdAccordionTitleLevelAttrPredicate(a)) &&
     attr.parent.name === "span" &&
     slotAttrArray.includes(attr.key.value) &&
-    ["title", "'title'"].includes(attr.value.value)
+    slotValuesArray.includes(attr.value.value)
   );
 };
 

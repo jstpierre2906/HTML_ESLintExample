@@ -1,7 +1,12 @@
 module.exports = (() => {
-  let attributes = {};
-  const setAttributes = (attribute) => {
-    attributes = {
+  let attributesObj = {};
+  let valuesObj = {};
+  const handleError = (error) => {
+    console.warn(error);
+    return null;
+  };
+  const setAttributesObj = (attribute) => {
+    attributesObj = {
       traditional: attribute,
       angularTraditional: `[${attribute}]`,
       angularCamel: (() => {
@@ -16,19 +21,36 @@ module.exports = (() => {
             .reduce((acc, current) => acc.concat(current), "");
           return `[${camelCased}]`;
         } catch (error) {
-          console.warn(error);
-          return null;
+          return handleError(error);
         }
       })(),
     };
   };
-  const buildArray = () => {
-    return Object.keys(attributes)
-      .filter((k) => !!attributes[k])
-      .map((k) => attributes[k]);
+  const setValuesObj = (values) => {
+    valuesObj = {
+      traditional: values,
+      angular: (() => {
+        try {
+          return values.map((v) => `'${v}'`);
+        } catch (error) {
+          return handleError(error);
+        }
+      })(),
+    };
   };
+  const buildArray = ({ obj, mapMethod }) => {
+    return Object.keys(obj)
+      .filter((k) => !!obj[k])
+      [mapMethod]((k) => obj[k]);
+  };
+  const buildAttrArray = () => buildArray({ obj: attributesObj, mapMethod: "map" });
+  const buildValuesArray = () => buildArray({ obj: valuesObj, mapMethod: "flatMap" });
   return {
-    init: (attr) => setAttributes(attr),
-    toArray: () => buildArray(),
+    init: ({ attribute, values }) => {
+      setAttributesObj(attribute);
+      setValuesObj(values);
+    },
+    toAttrArray: () => buildAttrArray(),
+    toValuesArray: () => buildValuesArray(),
   };
 })();
