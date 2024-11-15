@@ -1,10 +1,8 @@
+const handleError = require("./error-handler.util.js");
+
 module.exports = (() => {
   let attributesObj = {};
   let valuesObj = {};
-  const handleError = (error) => {
-    console.warn(error);
-    return null;
-  };
   const setAttributesObj = (attribute) => {
     attributesObj = {
       traditional: attribute,
