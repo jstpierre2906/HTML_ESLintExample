@@ -43,14 +43,12 @@ module.exports = (() => {
       .filter((k) => !!obj[k])
       [mapMethod]((k) => obj[k]);
   };
-  const buildAttrArray = () => buildArray({ obj: attributesObj, mapMethod: "map" });
-  const buildValuesArray = () => buildArray({ obj: valuesObj, mapMethod: "flatMap" });
   return {
     init: ({ attribute, values }) => {
       setAttributesObj(attribute);
       setValuesObj(values);
     },
-    toAttrArray: () => buildAttrArray(),
-    toValuesArray: () => buildValuesArray(),
+    toAttrArray: () => buildArray({ obj: attributesObj, mapMethod: "map" }),
+    toValuesArray: () => buildArray({ obj: valuesObj, mapMethod: "flatMap" }),
   };
 })();
