@@ -2,9 +2,9 @@ module.exports = (() => {
   let attributes = {};
   const setAttributes = (attribute) => {
     attributes = {
-      traditionalAttr: attribute,
-      angularAttrKebab: `[${attribute}]`,
-      angularAttrCamel: (() => {
+      traditional: attribute,
+      angularTraditional: `[${attribute}]`,
+      angularCamel: (() => {
         if (attribute.indexOf("-") === -1) {
           return null;
         }
