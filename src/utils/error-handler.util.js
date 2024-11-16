@@ -1,5 +1,5 @@
 module.exports = (error, level = "warning") => {
-  switch (error) {
+  switch (level) {
     case "info":
       console.log(error);
       break;
