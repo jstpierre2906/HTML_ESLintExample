@@ -1,1 +1,0 @@
-<div class="turquoise">Some foo content</div>
