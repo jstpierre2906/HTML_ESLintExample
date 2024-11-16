@@ -1,3 +1,5 @@
+// https://eslint.org/docs/latest/extend/custom-rules#options-schemas
+
 module.exports = (description, category = "Best Practices") => ({
   type: "problem",
   docs: {
