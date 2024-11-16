@@ -1,4 +1,5 @@
 <dsd-accordion>
   <h4 slot="title">Titre de l'accordéon</h4>
+  <foo-bar>Baz, bat</foo-bar>
   Contenu du tiroir
 </<dsd-accordion>

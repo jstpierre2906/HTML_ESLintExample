@@ -25,14 +25,22 @@ module.exports = (node) => {
     titleLevelAttr: {
       node: titleLevelAttr ?? null,
       replacer: "",
+      fixMethod: "replaceTextRange",
     },
     spanSlotTitleOpenStart: {
       node: spanSlotTitle?.openStart ?? null,
       replacer: "<h4",
+      fixMethod: "replaceTextRange",
     },
     spanSlotTitleClose: {
       node: spanSlotTitle?.close ?? null,
       replacer: "</h4>",
+      fixMethod: "replaceTextRange",
+    },
+    spanSlotTitleCloseAddHTML: {
+      node: spanSlotTitle?.close ?? null,
+      replacer: "<foo-bar>Baz, bat</foo-bar>",
+      fixMethod: "insertTextAfterRange",
     },
   };
 };
