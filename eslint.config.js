@@ -17,7 +17,7 @@ module.exports = [
       // "@html-eslint": html,
 
       // A custom rule must be wrapped inside a custom plugin
-      dsdSubtitle: dsdAccordionTitleLevelPlugin,
+      dsdAccordionTitleLevel: dsdAccordionTitleLevelPlugin,
     },
     rules: {
       // Doesn't seem to change anything
@@ -26,7 +26,7 @@ module.exports = [
       // "@html-eslint/no-inline-styles": "warn",
 
       // <plugins-key>/<rules.key>: <notice-type>
-      "dsdSubtitle/enforce-dsd-accordion-h4-slot-title": "error",
+      "dsdAccordionTitleLevel/enforce-dsd-accordion-title-level": "error",
     },
   },
 ];
