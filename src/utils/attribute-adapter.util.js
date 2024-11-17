@@ -1,8 +1,37 @@
 const handleError = require("./error-handler.util.js");
 
+/**
+ * @typedef {{
+ *  traditional: string;
+ *  angularTraditional: string;
+ *  angularCamel: string | null;
+ * }} AttributesObj
+ */
+
+/**
+ * @typedef {{
+ *  traditional: string[];
+ *  angular: string[] | null;
+ * }} ValuesObj
+ */
+
+/**
+ * @typedef {{
+ *  init: function({attribute: string; values: string[]}): void;
+ *  toAttrArray: function(): string[];
+ *  toValuesArray: function(): string[];
+ * }} AttributeAdapter
+ */
+
+/** @returns {AttributeAdapter} */
 module.exports = (() => {
+  /** @type {AttributesObj | null} */
   let attributesObj = {};
+
+  /** @type {ValuesObj | null} */
   let valuesObj = {};
+
+  /** @param {string} attribute */
   const setAttributesObj = (attribute) => {
     attributesObj = {
       traditional: attribute,
@@ -12,6 +41,7 @@ module.exports = (() => {
           return null;
         }
         try {
+          /** @type {string} */
           const camelCased = attribute
             .split("-")
             .filter((a) => a.length > 0)
@@ -24,6 +54,8 @@ module.exports = (() => {
       })(),
     };
   };
+
+  /** @param {string[]} values */
   const setValuesObj = (values) => {
     valuesObj = {
       traditional: values,
@@ -36,6 +68,14 @@ module.exports = (() => {
       })(),
     };
   };
+
+  /**
+   * @param {{
+   *  obj: AttributesObj | ValuesObj;
+   *  mapMethod: "map" | "flatMap";
+   * }}
+   * @returns {string[]}
+   */
   const buildArray = ({ obj, mapMethod }) => {
     return Object.keys(obj)
       .filter((k) => !!obj[k])
