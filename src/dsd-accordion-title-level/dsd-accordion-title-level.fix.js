@@ -1,6 +1,6 @@
-const setFixerContext = require("./dsd-accordion-title-level.context.js");
+import setFixerContext from "./dsd-accordion-title-level.context.js";
 
-module.exports = (fixer, node) => {
+export default (fixer, node) => {
   /** @type {import("./dsd-accordion-title-level.context.js").FixerContext} */
   const fixerContext = setFixerContext(node);
 

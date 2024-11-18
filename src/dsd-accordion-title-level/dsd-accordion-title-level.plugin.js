@@ -1,6 +1,6 @@
-const dsdAccordionTitleLevelRule = require("./dsd-accordion-title-level.rule.js");
+import dsdAccordionTitleLevelRule from "./dsd-accordion-title-level.rule.js";
 
-module.exports = {
+export default {
   rules: {
     "enforce-dsd-accordion-title-level": dsdAccordionTitleLevelRule,
   },

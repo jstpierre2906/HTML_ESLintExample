@@ -1,4 +1,4 @@
-const handleError = require("./error-handler.util.js");
+import handleError from "./error-handler.util.js";
 
 /**
  * @typedef {{
@@ -24,7 +24,7 @@ const handleError = require("./error-handler.util.js");
  */
 
 /** @returns {AttributeAdapter} */
-module.exports = (() => {
+export default (() => {
   /** @type {AttributesObj | null} */
   let attributesObj = {};
 

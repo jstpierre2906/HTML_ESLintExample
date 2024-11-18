@@ -1,10 +1,9 @@
 // Used for vanilla linter
-// const html = require("@html-eslint/eslint-plugin");
-const htmlParser = require("@html-eslint/parser");
+// import html from "@html-eslint/eslint-plugin";
+import htmlParser from "@html-eslint/parser";
+import dsdAccordionTitleLevelPlugin from "./src/dsd-accordion-title-level/dsd-accordion-title-level.plugin.js";
 
-const dsdAccordionTitleLevelPlugin = require("./src/dsd-accordion-title-level/dsd-accordion-title-level.plugin.js");
-
-module.exports = [
+export default [
   {
     // Doesn't seem to change anything
     // ...html.configs["flat/recommended"],

@@ -3,7 +3,7 @@
  * @param {"info" | "warning" | "error"} level
  * @returns {null}
  */
-module.exports = (error, level = "warning") => {
+export default (error, level = "warning") => {
   switch (level) {
     case "info":
       console.log(error);

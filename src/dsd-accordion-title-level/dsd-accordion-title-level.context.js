@@ -1,6 +1,6 @@
 // https://www.npmjs.com/package/es-html-parser#ast-format
 
-const attributeAdapter = require("../utils/attribute-adapter.util.js");
+import attributeAdapter from "../utils/attribute-adapter.util.js";
 
 /**
  * @typedef {{
@@ -16,7 +16,7 @@ const attributeAdapter = require("../utils/attribute-adapter.util.js");
  */
 
 /** @returns {FixerContext} */
-module.exports = (node) => {
+export default (node) => {
   attributeAdapter.init({ attribute: "title-level", values: ["2", "3", "4", "5", "6"] });
 
   /** @type {string[]}  */
