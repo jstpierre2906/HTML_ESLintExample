@@ -1,14 +1,12 @@
 import { errorHandler } from "./error-handler.util.js";
 
 /**
- * @typedef {{
- *  init: function({attribute: string; values: string[]}): void;
+ * @returns {{
+ *  init: function({attribute: string; values: string[]}): Object;
  *  toAttrArray: function(): string[];
  *  toValuesArray: function(): string[];
- * }} AttributeAdapter
+ * }}
  */
-
-/** @returns {AttributeAdapter} */
 export const attributeAdapter = (() => {
   /** @type {{ traditional: string; angularTraditional: string; angularCamel: string | null } | null} */
   let attributesObj = {};

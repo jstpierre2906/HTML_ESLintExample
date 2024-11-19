@@ -1,7 +1,7 @@
 /**
- * @param {Error} error
- * @param {"info" | "warning" | "error"} level
- * @returns {null}
+ * @returns {{
+ *  apply: function(Error, "info" | "warning" | "error"): null
+ * }}
  */
 export const errorHandler = (() => {
   return {

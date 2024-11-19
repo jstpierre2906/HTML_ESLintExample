@@ -3,19 +3,28 @@
 import { attributeAdapter } from "../utils/attribute-adapter.util.js";
 
 /**
+ * @typedef {
+ *  | import("es-html-parser").AttributeNode
+ *  | import("es-html-parser").OpenTagStartNode
+ *  | import("es-html-parser").CloseTagNode} ParserNode
+ */
+
+/**
  * @typedef {{
  *  [key: string]: {
- *    node:
- *      | import("es-html-parser").AttributeNode
- *      | import("es-html-parser").OpenTagStartNode
- *      | import("es-html-parser").CloseTagNode;
+ *    node: ParserNode;
  *    replacer: string;
  *    fixMethod: "replaceTextRange" | "insertTextAfterRange"
  *  }
  * }} FixerContext
  */
 
-/** @returns {FixerContext} */
+/**
+ * @returns {{
+ *  init: function(BaseNode): Object,
+ *  getContexts: function(): FixerContext
+ * }}
+ */
 export const fixerContext = (() => {
   let node;
   let titleLevelAttr;

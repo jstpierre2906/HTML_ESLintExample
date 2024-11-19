@@ -1,5 +1,11 @@
 import { fixerContext } from "./dsd-accordion-title-level.context.js";
 
+/**
+ * @returns {{
+ *  init: function(Object, import("./dsd-accordion-title-level.context.js").ParserNode): Object,
+ *  apply: function(): Object[]
+ * }}
+ */
 export const fixerHandler = (() => {
   let fixer;
   let node;
