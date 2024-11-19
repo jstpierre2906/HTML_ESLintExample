@@ -3,21 +3,21 @@
 // https://github.com/eslint/eslint/blob/cceccc771631011e04b37122b990205f0e8b6925/lib/rules/utils/fix-tracker.js#L83
 // https://eslint.org/docs/latest/extend/custom-rules#applying-fixes
 
-import setMeta from "../utils/meta.util.js";
-import setFix from "./dsd-accordion-title-level.fix.js";
+import { metaHandler } from "../utils/meta.util.js";
+import { fixerHandler } from "./dsd-accordion-title-level.fix.js";
 
 const MESSAGE = "Replacing dsd-accordion title-level";
 const TAG = "dsd-accordion";
 
 export default {
-  meta: setMeta(MESSAGE),
+  meta: metaHandler.init(MESSAGE).getMeta(),
   create: (context) => ({
     Tag(node) {
       if (node.name === TAG) {
         return context.report({
           node: node,
           message: MESSAGE,
-          fix: (fixer) => setFix(fixer, node),
+          fix: (fixer) => fixerHandler.init(fixer, node).apply(),
         });
       }
     },

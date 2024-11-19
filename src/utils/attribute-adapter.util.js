@@ -1,19 +1,4 @@
-import handleError from "./error-handler.util.js";
-
-/**
- * @typedef {{
- *  traditional: string;
- *  angularTraditional: string;
- *  angularCamel: string | null;
- * }} AttributesObj
- */
-
-/**
- * @typedef {{
- *  traditional: string[];
- *  angular: string[] | null;
- * }} ValuesObj
- */
+import { errorHandler } from "./error-handler.util.js";
 
 /**
  * @typedef {{
@@ -24,13 +9,11 @@ import handleError from "./error-handler.util.js";
  */
 
 /** @returns {AttributeAdapter} */
-export default (() => {
-  /** @type {AttributesObj | null} */
+export const attributeAdapter = (() => {
+  /** @type {{ traditional: string; angularTraditional: string; angularCamel: string | null } | null} */
   let attributesObj = {};
-
-  /** @type {ValuesObj | null} */
+  /** @type {{ traditional: string[]; angular: string[] | null } | null} */
   let valuesObj = {};
-
   /** @param {string} attribute */
   const setAttributesObj = (attribute) => {
     attributesObj = {
@@ -49,12 +32,11 @@ export default (() => {
             .reduce((acc, current) => acc.concat(current), "");
           return `[${camelCased}]`;
         } catch (error) {
-          return handleError(error);
+          return errorHandler.apply(error);
         }
       })(),
     };
   };
-
   /** @param {string[]} values */
   const setValuesObj = (values) => {
     valuesObj = {
@@ -63,16 +45,17 @@ export default (() => {
         try {
           return values.map((v) => `'${v}'`);
         } catch (error) {
-          return handleError(error);
+          return errorHandler.apply(error);
         }
       })(),
     };
   };
-
   /**
    * @param {{
-   *  obj: AttributesObj | ValuesObj;
-   *  mapMethod: "map" | "flatMap";
+   *  obj:
+   *    {{ traditional: string; angularTraditional: string; angularCamel: string | null } | null} |
+   *    {{ traditional: string[]; angular: string[] | null } | null};
+   *  mapMethod: "map" | "flatMap"
    * }}
    * @returns {string[]}
    */
@@ -85,6 +68,7 @@ export default (() => {
     init: ({ attribute, values }) => {
       setAttributesObj(attribute);
       setValuesObj(values);
+      return attributeAdapter;
     },
     toAttrArray: () => buildArray({ obj: attributesObj, mapMethod: "map" }),
     toValuesArray: () => buildArray({ obj: valuesObj, mapMethod: "flatMap" }),

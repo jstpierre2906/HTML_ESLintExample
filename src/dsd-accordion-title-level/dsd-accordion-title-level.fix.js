@@ -1,12 +1,21 @@
-import setFixerContext from "./dsd-accordion-title-level.context.js";
+import { fixerContext } from "./dsd-accordion-title-level.context.js";
 
-export default (fixer, node) => {
+export const fixerHandler = (() => {
+  let fixer;
+  let node;
   /** @type {import("./dsd-accordion-title-level.context.js").FixerContext} */
-  const fixerContext = setFixerContext(node);
-
-  return Object.keys(fixerContext)
-    .filter((k) => !!fixerContext[k].node)
-    .map((k) => {
-      return fixer[fixerContext[k].fixMethod](fixerContext[k].node.range, fixerContext[k].replacer);
-    });
-};
+  let contexts;
+  return {
+    init: (_fixer, _node) => {
+      fixer = _fixer;
+      node = _node;
+      contexts = fixerContext.init(_node).getContexts();
+      return fixerHandler;
+    },
+    apply: () => {
+      return Object.keys(contexts)
+        .filter((k) => !!contexts[k].node)
+        .map((k) => fixer[contexts[k].fixMethod](contexts[k].node.range, contexts[k].replacer));
+    },
+  };
+})();
