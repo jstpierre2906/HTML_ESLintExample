@@ -14,7 +14,7 @@ import { attributeAdapter } from "../utils/attribute-adapter.util.js";
  *  [key: string]: {
  *    node: ParserNode;
  *    replacer: string;
- *    fixMethod: "replaceTextRange" | "insertTextAfterRange"
+ *    fixMethod: "replaceTextRange" | "insertTextAfterRange" | string
  *  }
  * }} FixerContext
  */

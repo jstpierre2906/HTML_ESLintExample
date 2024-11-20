@@ -8,10 +8,10 @@ import { errorHandler } from "./error-handler.util.js";
  * }}
  */
 export const attributeAdapter = (() => {
-  /** @type {{ traditional: string; angularTraditional: string; angularCamel: string | null } | null} */
-  let attributesObj = {};
-  /** @type {{ traditional: string[]; angular: string[] | null } | null} */
-  let valuesObj = {};
+  /** @type {{ traditional: string; angularTraditional: string; angularCamel: string | null }} */
+  let attributesObj;
+  /** @type {{ traditional: string[]; angular: string[] | null }} */
+  let valuesObj;
   /** @param {string} attribute */
   const setAttributesObj = (attribute) => {
     attributesObj = {
@@ -49,18 +49,25 @@ export const attributeAdapter = (() => {
     };
   };
   /**
-   * @param {{
-   *  obj:
-   *    {{ traditional: string; angularTraditional: string; angularCamel: string | null } | null} |
-   *    {{ traditional: string[]; angular: string[] | null } | null};
-   *  mapMethod: "map" | "flatMap"
-   * }}
+   * @param {{objType: "attributes" | "values"}} ObjLiteral
    * @returns {string[]}
    */
-  const buildArray = ({ obj, mapMethod }) => {
+  const buildArray = ({ objType }) => {
+    const objTypes = {
+      attributes: {
+        obj: attributesObj,
+        method: "map",
+      },
+      values: {
+        obj: valuesObj,
+        method: "flatMap",
+      },
+    };
+    const obj = objTypes[objType].obj;
+    const method = objTypes[objType].method;
     return Object.keys(obj)
       .filter((k) => !!obj[k])
-      [mapMethod]((k) => obj[k]);
+      [method]((k) => obj[k]);
   };
   return {
     init: ({ attribute, values }) => {
@@ -68,7 +75,7 @@ export const attributeAdapter = (() => {
       setValuesObj(values);
       return attributeAdapter;
     },
-    toAttrArray: () => buildArray({ obj: attributesObj, mapMethod: "map" }),
-    toValuesArray: () => buildArray({ obj: valuesObj, mapMethod: "flatMap" }),
+    toAttrArray: () => buildArray({ objType: "attributes" }),
+    toValuesArray: () => buildArray({ objType: "values" }),
   };
 })();
