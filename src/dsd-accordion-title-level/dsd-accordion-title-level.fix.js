@@ -11,9 +11,9 @@ export const fixerHandler = (() => {
   /** @type {import("./dsd-accordion-title-level.context.js").FixerContext} */
   let contexts;
   return {
-    init: (_fixer, _node) => {
+    init: (_fixer, node) => {
       fixer = _fixer;
-      contexts = fixerContext.init(_node).getContexts();
+      contexts = fixerContext.init(node).getContexts();
       return fixerHandler;
     },
     apply: () => {
